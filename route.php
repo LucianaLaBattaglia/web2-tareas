@@ -1,13 +1,22 @@
 <?php
-require_once 'index.php';
+
 require_once 'tarea.php';
+require_once 'controllers\tareascontroller.php';
 
-if($_GET['action']==""){
-    home();
+
+$controller=new tareascontroller();
+$parteURL= explode("/", $_GET['action']);
+
+if($parteURL[0]==""){
+    $controller->home();
 }else{
-    if($_GET['action']=="agregar"){
 
-        insert_tarea();
+    if($parteURL[0]=="agregar"){
+
+      $controller->insert_tarea();
+    }
+    if($parteURL[0]=="borrar"){
+        delete_tarea($parteURL[1]);
 
     }
 }
