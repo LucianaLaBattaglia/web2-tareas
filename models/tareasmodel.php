@@ -4,11 +4,11 @@
 
 class tareasmodel
 {
-
+    private $db;
 
     function __construct()
     {
-        
+        $this->db= conectar();
 }
 
 
@@ -22,8 +22,8 @@ class tareasmodel
 
     function get_tareas(){
 
-        $db=conectar();
-        $sentencia = $db->prepare( "select * from tarea");
+      
+        $sentencia = $this->db->prepare( "select * from tarea");
 
         $sentencia->execute();
 
@@ -34,8 +34,8 @@ class tareasmodel
 
     function insertartarea($titulo, $descripcion, $realizada){
 
-        $db= conectar();
-        $sentencia = $db->prepare("INSERT INTO tarea(nombre, descripcion, realizada) VALUES(?, ?, ?)");
+      
+        $sentencia = $this->db->prepare("INSERT INTO tarea(nombre, descripcion, realizada) VALUES(?, ?, ?)");
         $sentencia->execute (array($titulo, $descripcion, $realizada));
     
 
